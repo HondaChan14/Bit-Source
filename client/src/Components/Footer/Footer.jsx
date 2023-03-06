@@ -2,7 +2,9 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <footer className="text-center bg-slate-800 text-white py-3">
+      <span>Made by Jason Jugo and open sourced on <a href="https://github.com/" className='underline'>GitHub</a></span>
+    </footer>
   )
 }
 
