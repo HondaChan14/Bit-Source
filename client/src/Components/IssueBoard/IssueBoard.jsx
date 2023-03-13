@@ -1,11 +1,12 @@
 import React from 'react'
+import GoodFirstIssueCard from './GoodFirstIssueCard';
 
-const IssueBoard = ({issueCards}) => {
+const IssueBoard = ({ issues }) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    {cards.map(card => (
-      <Card key={card.title} title={card.title} image={card.image} />
-    ))}
+    <div className="min-h-screen bg-slate-800 p-10 grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      {issues.map(issue => (
+        <GoodFirstIssueCard key={issue.id} issue={issue} />
+      ))}
   </div>
   )
 }
