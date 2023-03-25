@@ -1,0 +1,29 @@
+{
+    "name": "bit-source",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "concurrently \"npm run start-client\" \"npm run start-server\"",
+        "start-client": "cd client && npm run dev",
+        "start-server": "cd server && npm start",
+        "lint": "eslint --ext .js,.jsx --plugin react ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/HondaChan14/Bit-Source.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/HondaChan14/Bit-Source/issues"
+    },
+    "homepage": "https://github.com/HondaChan14/Bit-Source#readme",
+    "devDependencies": {
+        "concurrently": "^7.6.0",
+        "eslint": "^8.36.0",
+        "eslint-plugin-react": "^7.32.2",
+        "nodemon": "^2.0.22",
+        "prettier": "^2.8.7"
+    }
+}
