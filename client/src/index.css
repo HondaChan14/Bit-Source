@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .label {
+        @apply rounded-2xl px-2 py-[2px] border-2 font-normal;
+    }
+
+    .label-goodFirstIssue {
+        @apply bg-label-goodFirstIssue border-label-goodFirstIssue text-label-goodFirstIssue-text;
+    }
+
+    .label-documentation {
+        @apply bg-label-documentation border-label-documentation text-label-documentation-text;
+    }
+
+    .label-bug {
+        @apply bg-label-bug border-label-bug text-label-bug-text;
+    }
+
+    .label-duplicate {
+        @apply bg-label-duplicate border-label-duplicate text-label-duplicate-text;
+    }
+
+    .label-enhancement {
+        @apply bg-label-enhancement border-label-enhancement text-label-enhancement-text;
+    }
+
+    .label-helpWanted {
+        @apply bg-label-helpWanted border-label-helpWanted text-label-helpWanted-text;
+    }
+
+    .label-invalid {
+        @apply bg-label-invalid border-label-invalid text-label-invalid-text;
+    }
+
+    .label-question {
+        @apply bg-label-question border-label-question text-label-question-text;
+    }
+
+    .label-wontfix {
+        @apply bg-label-wontfix border-label-wontfix text-label-wontfix-text;
+    }
+
+    .label-misc {
+        @apply bg-default border-default text-default;
+    }
+}
