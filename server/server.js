@@ -1,11 +1,11 @@
-import express from 'express';
+const express = require('express');
 const app = express();
-import cors from 'cors';
+const cors = require('cors');
 //const mongoose = require('mongoose');
 //Connect to MongoDB
 //mongoose.connect(process.env.MONGODB_URI)
 
-import mainRoutes from './routes/main';
+const mainRoutes = require('./routes/main');
 
 require('dotenv').config({ path: './config/.env' });
 
