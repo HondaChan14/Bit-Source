@@ -1,6 +1,6 @@
 import React from 'react';
 import IssueTag from './IssueTag';
-import octoCat from '../../../public/images/octoface.svg';
+import octoCat from '/src/images/octoface.svg';
 
 const GoodFirstIssueCard = ({ issue }) => {
     const dateData = new Date(issue.created_at).toLocaleDateString();
