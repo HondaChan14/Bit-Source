@@ -1,27 +1,37 @@
+require('dotenv').config({ path: './config/.env' });
 const express = require('express');
 const app = express();
 const cors = require('cors');
-//const mongoose = require('mongoose');
-//Connect to MongoDB
-//mongoose.connect(process.env.MONGODB_URI)
+const mongoose = require('mongoose');
 
 const mainRoutes = require('./routes/main');
 
-require('dotenv').config({ path: './config/.env' });
+app.use(express.json());
 
 app.use((req, res, next) => {
-  res.setHeader('Content-Type', 'application/json');
-  next();
+    res.setHeader('Content-Type', 'application/json');
+    next();
 });
 
 const corsOptions = {
-  origin: `${process.env.Origin}`,
+    origin: `${process.env.Origin}`,
 };
 
 app.use(cors(corsOptions));
 
-app.use('/', mainRoutes);
+// Routes
+app.use('/home', mainRoutes);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
-});
+//Connect to MongoDB
+mongoose
+    .connect(process.env.DB_STRING)
+    .then(() => {
+        app.listen(process.env.PORT, () => {
+            console.log(
+                `Server running on port ${process.env.PORT} & Connected to MongoDB`
+            );
+        });
+    })
+    .catch((error) => {
+        console.log(error);
+    });
