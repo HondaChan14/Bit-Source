@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const mainRoutes = require('./routes/main');
+const userRoutes = require('./routes/user');
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -20,7 +21,7 @@ app.use((req, res, next) => {
 });
 
 mongoose
-    .connect(process.env.DB_DSTRING)
+    .connect(process.env.DB_STRING)
     .then(() => {
         console.log('Connected to database');
         app.listen(port, () => {
@@ -32,3 +33,4 @@ mongoose
     });
 
 app.use('/', mainRoutes);
+app.use('/user', userRoutes);
