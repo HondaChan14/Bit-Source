@@ -8,9 +8,8 @@
         "start-client": "cd client && npm run dev",
         "start-server": "cd server && npm start",
         "lint": "eslint --ext .js,.jsx --plugin react .",
-        "build": "concurrently \"npm run build-client\" \"npm run build-server\"",
-        "build-client": "cd client && npm run build",
-        "build-server": "cd server && npm run build"
+        "build": "npm run build-client",
+        "build-client": "cd client && npm run build"
     },
     "repository": {
         "type": "git",
