@@ -7,7 +7,7 @@ const LandingPage = () => {
     useEffect(() => {
         const fetchIssues = async () => {
             try {
-                const response = await fetch(import.meta.env.RAILWAY_Bit-Source_STATIC_URL);
+                const response = await fetch(import.meta.env.RAILWAY_BIT_SOURCE_STATIC_URL);
                 const data = await response.json();
                 setIssues(data);
             } catch (error) {
