@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 });
 
 mongoose
-    .connect(process.env.DB_STRING)
+    .connect(process.env.MONGO_URL)
     .then(() => {
         console.log('Connected to database');
         app.listen(port, () => {
