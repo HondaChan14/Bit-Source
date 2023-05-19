@@ -7,7 +7,15 @@ const LandingPage = () => {
     useEffect(() => {
         const fetchIssues = async () => {
             try {
-                const response = await fetch(`https://${import.meta.env.VITE_BACK_END_URL}`);
+                let baseUrl;
+                if(process.env.NODE_ENV === 'development') {
+                    // Use HTTP for local development
+                    baseUrl = 'http://localhost:8000';
+                } else {
+                    // Use HTTPS for production or other environments
+                    baseUrl = `https://${import.meta.env.VITE_BACK_END_URL}`;
+                }
+                const response = await fetch(baseUrl);
                 const data = await response.json();
                 setIssues(data);
             } catch (error) {
