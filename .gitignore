@@ -1,7 +1,0 @@
-node_modules
-.env
-.vscode
-build
-.DS_Store
-.mongo
-formLogic.txt
