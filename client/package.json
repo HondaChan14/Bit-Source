@@ -6,7 +6,7 @@
     "proxy": "http://localhost:8000/",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "build": "VITE_BACK_END_URL=$RAILWAY_SERVICE_BACK_END_URL vite build",
         "preview": "vite preview",
         "start": "serve dist -s -n -L -p $PORT"
     },
