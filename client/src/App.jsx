@@ -5,16 +5,20 @@ import NavBar from './Components/Header/NavBar';
 import MobileNav from './Components/Header/MobileNav';
 import Footer from './Components/Footer/Footer';
 import './index.css';
+import SignUp from './pages/Signup/SignUp';
+import Login from './pages/Login/Login';
 
 function App() {
     return (
-        <div className="App">
+        <div className="bg-slate-800">
             <BrowserRouter>
                 <NavBar />
                 <MobileNav />
-                <div className="pages">
+                <div>
                     <Routes>
                         <Route path="/" element={<LandingPage />} />
+                        <Route path="/signup" element={<SignUp />} />
+                        <Route path="/login" element={<Login />} />
                     </Routes>
                 </div>
                 <Footer />
