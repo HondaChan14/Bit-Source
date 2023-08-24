@@ -2,6 +2,7 @@ import React from 'react';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import IssueTag from './IssueTag';
 import octoCat from '/src/images/octoface.svg';
+import toast from 'react-hot-toast';
 
 const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -15,6 +16,17 @@ const GoodFirstIssueCard = ({ issue }) => {
     const labelData = labels.map((label) => capitalizeFirstLetter(label.name));
 
     const userProfile = user.html_url;
+    const userProfileImage = user.avatar_url;
+
+    const notify = () =>
+        toast.promise(
+            Promise.resolve(isStarred), // Use Promise.resolve to mimic a promise-based value
+            {
+                loading: 'Saving...',
+                success: isStarred ? <b>Unstarred! ❌</b> : <b>Starred! ✨</b>,
+                error: 'Something went wrong with saving! 😭',
+            }
+        );
 
     const [isStarred, setIsStarred] = React.useState(false);
 
@@ -37,8 +49,8 @@ const GoodFirstIssueCard = ({ issue }) => {
 
                     <div className='flex space-x-2 '>
                         <img
-                            className='w-6'
-                            src={octoCat}
+                            className='w-10 h-10 rounded-lg'
+                            src={userProfileImage || octoCat}
                             alt='octo cat face icon'
                         />
                         <a
@@ -57,7 +69,10 @@ const GoodFirstIssueCard = ({ issue }) => {
                 </div>
                 <div className='absolute right-8 bottom-4'>
                     <button
-                        onClick={handleStarClick}
+                        onClick={() => {
+                            notify();
+                            handleStarClick();
+                        }}
                         className='text-white text-3xl font-bold'
                     >
                         {isStarred ? <AiFillStar /> : <AiOutlineStar />}
