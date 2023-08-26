@@ -1,32 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import IssueBoard from '../../Components/IssueBoard/IssueBoard';
 
+const getBaseUrl = () => {
+    if (process.env.NODE_ENV === 'development') {
+        return 'http://localhost:8000';
+    } else {
+        return `https://${import.meta.env.VITE_BACK_END_URL}`;
+    }
+};
+
+const fetchIssues = async () => {
+    try {
+        const baseUrl = getBaseUrl();
+        const response = await fetch(baseUrl);
+
+        if (!response.ok) {
+            throw new Error(
+                `Network response was not ok (${response.status} ${response.statusText})`
+            );
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`Error fetching issues: ${error}`);
+    }
+};
 const LandingPage = () => {
     const [issues, setIssues] = useState([]);
 
     useEffect(() => {
-        const fetchIssues = async () => {
+        const fetchAndSetIssues = async () => {
             try {
-                let baseUrl;
-                if(process.env.NODE_ENV === 'development') {
-                    // Use HTTP for local development
-                    baseUrl = 'http://localhost:8000';
-                } else {
-                    // Use HTTPS for production or other environments
-                    baseUrl = `https://${import.meta.env.VITE_BACK_END_URL}`;
-                }
-                const response = await fetch(baseUrl);
-                const data = await response.json();
+                const data = await fetchIssues();
                 setIssues(data);
             } catch (error) {
-                console.error(`${error} is coming from LandingPage`);
+                throw error;
             }
         };
-        fetchIssues();
+        fetchAndSetIssues();
     }, []);
 
     return (
-        <div className="bg-red-400 min-h-screen">
+        <div className='bg-red-400 min-h-screen'>
             <IssueBoard issues={issues} />
         </div>
     );
