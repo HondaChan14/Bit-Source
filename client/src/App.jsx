@@ -4,7 +4,7 @@ import LandingPage from './pages/Home/LandingPage';
 import NavBar from './Components/Header/NavBar';
 import MobileNav from './Components/Header/MobileNav';
 import Footer from './Components/Footer/Footer';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 // import ClerkProviderWithRoutes from './Components/Clerk/ClerkProviderWithRoutes';
 
 import './index.css';
