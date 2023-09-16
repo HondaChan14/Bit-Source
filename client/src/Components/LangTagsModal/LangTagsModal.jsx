@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import LangTag from './LangTag';
 import Modal from 'react-modal';
+const backendUrl = import.meta.env.VITE_BACK_END_URL;
 
 const getProgrammingLanguages = () => {
     return [
@@ -38,27 +39,29 @@ const LangTagsModal = ({ updateIssues }) => {
         setIsOpen(false);
     }
 
-    function handleLanguageClick(language) {
-        //Make an API request to your backend using fetch
-        fetch(`/${language.keyword}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response;
-            })
-            .then((data) => {
-                // Handle the response if needed
-                console.log('API Response:', data);
+    async function handleLanguageClick(language) {
+        try {
+            // Create a URLSearchParams object to build the query string
+            const queryParams = new URLSearchParams();
+            queryParams.append('language', language.keyword); // Add the selected language as a query parameter
 
-                // Update the issues state using the callback from props
-                updateIssues(data);
-                closeModal(); // Close the modal
-            })
-            .catch((error) => {
-                // Handle errors if the request fails
-                console.error('API Error:', error);
-            });
+            // Construct the URL with query parameters
+            const apiUrl = `${backendUrl}/issues/${queryParams.toString()}`;
+
+            // Make the API request using the constructed URL
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+                throw new Error('GitHub API request failed');
+            }
+
+            // Parse the response as JSON
+            const data = await response.json();
+
+            // Update the issues state with the new data
+            updateIssues(data);
+        } catch (error) {
+            console.error('API Error:', error);
+        }
     }
     return (
         <div className='flex justify-center py-4'>

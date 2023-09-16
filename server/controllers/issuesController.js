@@ -6,7 +6,6 @@ const GITHUB_API_BASE_URL = process.env.GITHUB_API_BASE_URL;
 const fetchGitHubIssues = async (selectedLanguage) => {
     // Fetch GitHub issues using the provided URL
     const response = await fetch(`${GITHUB_API_BASE_URL}/search/issues?q=label:"good+first+issue"+language:${selectedLanguage}+is:open+no:assignee&sort=created&order=desc&per_page=100`);
-    console.log(response);
     // Check if the API request was successful
     if (!response.ok){
         throw new Error('Failed to fetch data. Please try again later.')
