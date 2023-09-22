@@ -1,49 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import IssueBoard from '../../Components/IssueBoard/IssueBoard';
+import LoadingSpinner from '../../Components/Loading/Loading';
+import LangTagsModal from '../../Components/LangTagsModal/LangTagsModal';
 
-const getBaseUrl = () => {
-    if (process.env.NODE_ENV === 'development') {
-        return 'http://localhost:8000';
-    } else {
-        return `https://${import.meta.env.VITE_BACK_END_URL}`;
-    }
-};
-
-const fetchIssues = async () => {
-    try {
-        const baseUrl = getBaseUrl();
-        const response = await fetch(baseUrl);
-
-        if (!response.ok) {
-            throw new Error(
-                `Network response was not ok (${response.status} ${response.statusText})`
-            );
-        }
-
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error(`Error fetching issues: ${error}`);
-    }
-};
 const LandingPage = () => {
     const [issues, setIssues] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const backendUrl = import.meta.env.VITE_BACK_END_URL;
+
+    const updateIssues = (newIssues) => {
+        setIssues(newIssues);
+    };
 
     useEffect(() => {
         const fetchAndSetIssues = async () => {
             try {
-                const data = await fetchIssues();
+                const response = await fetch(backendUrl);
+                if (!response.ok) {
+                    throw new Error(
+                        `GitHub API request failed with status: ${response.status}`
+                    );
+                }
+                const data = await response.json();
                 setIssues(data);
+                setLoading(false);
             } catch (error) {
-                throw error;
+                console.error('Error:', error); // Log the error for debugging
+                setError(error);
+                setLoading(false);
             }
         };
         fetchAndSetIssues();
-    }, []);
+    }, [backendUrl]);
 
     return (
-        <div className='bg-red-400 min-h-screen'>
-            <IssueBoard issues={issues} />
+        <div className='bg-slate-800 min-h-screen'>
+            {loading ? (
+                <LoadingSpinner />
+            ) : error ? (
+                <p>An error occurred: {error.message}</p>
+            ) : (
+                <>
+                    <LangTagsModal updateIssues={updateIssues} />
+                    <IssueBoard issues={issues} />
+                </>
+            )}
         </div>
     );
 };

@@ -1,14 +1,14 @@
 require('dotenv').config();
 const fetch = require('node-fetch');
-const GITHUB_API_URL = process.env.GITHUB_API_URL;
+const GITHUB_API_BASE_URL = process.env.GITHUB_API_BASE_URL;
 
-const fetchGitHubIssues = async () => {
+// Fetch Github API issues
+const fetchGitHubIssues = async (selectedLanguage) => {
     // Fetch GitHub issues using the provided URL
-    const response = await fetch(GITHUB_API_URL);
-
+    const response = await fetch(`${GITHUB_API_BASE_URL}/search/issues?q=label:"good+first+issue"+language:${selectedLanguage}+is:open+no:assignee&sort=created&order=desc&per_page=100`);
     // Check if the API request was successful
     if (!response.ok){
-        throw new Error(`GitHub API request failed with status: ${info.status}`);
+        throw new Error('Failed to fetch data. Please try again later.')
     }
     // Return response in JSON
     return response.json();
@@ -31,9 +31,10 @@ const filterUnassignedIssues = (issues) => {
 
 module.exports = {
     getIssues: async (req, res) => {
+        const selectedLanguage = req.params.language || "javascript";
         try {
             // Fetch GitHub issues from the API
-            const data = await fetchGitHubIssues();
+            const data = await fetchGitHubIssues(selectedLanguage);
             // Filter out UnassignedIssued - Sort by Creation Date - filter out pull requests
             const filteredIssues = filterUnassignedIssues(sortIssuesByCreationDate(filterOutPullRequests(data.items)))
             // Send the filtered issues as a JSON response
