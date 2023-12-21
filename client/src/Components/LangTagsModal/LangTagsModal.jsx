@@ -41,12 +41,8 @@ const LangTagsModal = ({ updateIssues }) => {
 
     async function handleLanguageClick(language) {
         try {
-            // Create a URLSearchParams object to build the query string
-            const queryParams = new URLSearchParams();
-            queryParams.append('language', language.keyword); // Add the selected language as a query parameter
-
             // Construct the URL with query parameters
-            const apiUrl = `${backendUrl}/issues/${queryParams.toString()}`;
+            const apiUrl = `${backendUrl}/issues/${language.keyword}`;
 
             // Make the API request using the constructed URL
             const response = await fetch(apiUrl);
