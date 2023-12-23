@@ -35,11 +35,15 @@ const LandingPage = () => {
     }, [backendUrl]);
 
     return (
-        <div className='bg-slate-800 min-h-screen'>
+        <div className='bg-slate-800'>
             {loading ? (
                 <LoadingSpinner />
             ) : error ? (
-                <p>An error occurred: {error.message}</p>
+                <p className='text-white text-2xl font-bold animate-pulse'>
+                    {console.log(`An error occurred: ${error.message}`)}
+                    Oops! Something went wrong. Please refresh the page or try
+                    again later.
+                </p>
             ) : (
                 <>
                     <LangTagsModal updateIssues={updateIssues} />
