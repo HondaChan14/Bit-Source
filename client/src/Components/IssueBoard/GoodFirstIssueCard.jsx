@@ -36,18 +36,18 @@ const GoodFirstIssueCard = ({ issue }) => {
 
     return (
         <div className='rounded-2xl bg-gradient-to-r from-sky-400 to-blue-500 p-1 shadow-xl hover:shadow-2xl transition duration-500 transform hover:-traslate-y-1 hover:scale-105'>
-            <div className='block rounded-xl bg-[#0d1117] hover:bg-[#516A8F] p-4 sm:p-6 lg:p-8 h-80'>
-                <h2 className='text-xl text-white mb-2 h-20 font-bayon font '>
+            <div className='block rounded-xl bg-background hover:bg-blue-100 p-4 sm:p-6 lg:p-8 h-80'>
+                <h2 className='text-xl text-text mb-2 h-20 font-bayon'>
                     {issueTitleData}
                 </h2>
                 <div className='flex justify-between'>
                     <div>
-                        <span className='text-white font-medium'>
+                        <span className='text-text font-medium'>
                             Created: {dateData}
                         </span>
                     </div>
 
-                    <div className='flex space-x-2 '>
+                    <div className='flex flex-wrap flex-col justify-center text-center items-center'>
                         <img
                             className='w-10 h-10 rounded-lg'
                             src={userProfileImage || octoCat}
@@ -55,7 +55,7 @@ const GoodFirstIssueCard = ({ issue }) => {
                         />
                         <a
                             href={userProfile}
-                            className=' text-white font-medium'
+                            className=' text-text font-medium'
                         >
                             {usernameData}
                         </a>
@@ -73,14 +73,14 @@ const GoodFirstIssueCard = ({ issue }) => {
                             notify();
                             handleStarClick();
                         }}
-                        className='text-white text-3xl font-bold'
+                        className='text-text text-3xl font-bold hover:text-yellow-400'
                     >
                         {isStarred ? <AiFillStar /> : <AiOutlineStar />}
                     </button>
                 </div>
-                <div className='absolute bottom-4 rounded-md border-2 border-white-800'>
+                <div className='absolute bottom-4 rounded-md border-2 border-primary'>
                     <button
-                        className='font-bayon text-xl bg-blue-600 hover:bg-slate-700 text-white py-2 px-4 rounded'
+                        className='font-bayon text-xl bg-background hover:bg-accent text-text hover:text-background py-2 px-4 rounded'
                         onClick={() => window.open(issue.html_url, '_blank')}
                     >
                         View on Github
