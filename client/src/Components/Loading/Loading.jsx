@@ -3,7 +3,7 @@ export const LoadingSpinner = () => {
         <div>
             <svg
                 aria-hidden='true'
-                className='animate-spin fill-blue-600 text-slate-200 dark:text-slate-600'
+                className='animate-spin fill-indigo-800 text-slate-400 dark:fill-indigo-800 dark:text-slate-600'
                 viewBox='0 0 100 101'
                 fill='none'
                 xmlns='http://www.w3.org/2000/svg'
@@ -19,7 +19,7 @@ export const LoadingSpinner = () => {
                     fill='currentFill'
                 />
             </svg>
-            <span className='sr-only'>Loading...</span>
+            <span className='animate-pulse font-semibold'>Loading...</span>
         </div>
     );
 };
