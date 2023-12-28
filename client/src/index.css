@@ -2,12 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-    .label {
-        @apply rounded-2xl px-2 py-[2px] border-2 font-normal;
+@layer base {
+    :root {
+        --color-logo: #695e93;
+        --color-primary: #5495ab;
+        --color-secondary: #9ca1ce;
+        --color-accent: #857abd;
+        --color-text: #0c1518;
+        --color-bkg: #f1f7f9;
+        --tag-text: #f1f7f9;
+        --tag-bkg: #0c1518;
+        --tag-border: #0c1518;
     }
 
-    .label-goodFirstIssue {
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --color-logo: #695e93;
+            --color-primary: #5495ab;
+            --color-secondary: #313663;
+            --color-accent: #4d4285;
+            --color-text: #e7f0f3;
+            --color-bkg: #060c0e;
+            --tag-text: #060c0e;
+            --tag-bkg: #e7f0f3;
+        }
+    }
+
+    :root[data-theme='dark'] {
+        --color-logo: #695e93;
+        --color-primary: #5495ab;
+        --color-secondary: #313663;
+        --color-accent: #4d4285;
+        --color-text: #e7f0f3;
+        --color-bkg: #060c0e;
+        --tag-text: #060c0e;
+        --tag-bkg: #e7f0f3;
+    }
+}
+
+@layer utilities {
+    .label {
+        @apply rounded-2xl px-2 py-[2px] font-medium bg-tag-background text-tag-text border-tag-border;
+    }
+
+    /* .label-goodFirstIssue {
         @apply bg-label-goodFirstIssue border-label-goodFirstIssue text-label-goodFirstIssue-text;
     }
 
@@ -41,11 +79,11 @@
 
     .label-wontfix {
         @apply bg-label-wontfix border-label-wontfix text-label-wontfix-text;
-    }
+    } */
 
-    .label-misc {
+    /* .label-misc {
         @apply bg-default border-default text-default;
-    }
+    } */
 
     .input-style {
         @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline;
