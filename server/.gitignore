@@ -6,3 +6,4 @@ build
 .mongo
 formLogic.txt
 server/config/.env
+.vercel
