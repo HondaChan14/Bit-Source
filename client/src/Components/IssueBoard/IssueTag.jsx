@@ -1,29 +1,26 @@
 import React from 'react';
 
-const tagClasses = {
-    'good first issue': 'label-goodFirstIssue',
-    documentation: 'label-documentation',
-    bug: 'label-bug',
-    duplicate: 'label-duplicate',
-    enhancement: 'label-enhancement',
-    'help wanted': 'label-helpWanted',
-    invalid: 'label-invalid',
-    question: 'label-question',
-    wontfix: 'label-wontfix',
-    default: 'label-misc', // Add a default class for the 'misc' key
+const issueTags = {
+    'Good first issue': 'Good first issue',
+    Documentation: 'Documentation',
+    Bug: 'Bug',
+    Duplicate: 'Duplicate',
+    Enhancement: 'Enhancement',
+    'Help wanted': 'Help wanted',
+    Invalid: 'Invalid',
+    Question: 'Question',
+    'Wont fix': 'Wontfix',
 };
 
-const defaultClassName = 'label-misc';
-
 const IssueTag = ({ issueTag }) => {
-    const normalizedTag = issueTag.toLowerCase();
-    const tagClass = tagClasses[normalizedTag] || defaultClassName;
-
-    return tagClass === defaultClassName ? null : (
-        <div className='p-1'>
-            <span className={`label ${tagClass}`}>{issueTag}</span>
-        </div>
-    );
+    if (issueTags.hasOwnProperty(issueTag)) {
+        return (
+            <div className='p-1'>
+                <span className='label'>{issueTag}</span>
+            </div>
+        );
+    }
+    return null;
 };
 
 export default IssueTag;

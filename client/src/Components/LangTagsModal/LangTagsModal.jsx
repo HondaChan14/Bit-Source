@@ -61,10 +61,15 @@ const LangTagsModal = ({ updateIssues }) => {
     }
     return (
         <div className='flex justify-center py-4'>
-            <div className='inline-flex text-white border-slate-500 border-4 rounded-3xl p-4 items-center h-1 bg-[#0d1117]'>
-                <button className='hover:animate-pulse' onClick={openModal}>
-                    Filter programming language
-                </button>
+            <div className='inline-flex text-text bg-gradient-to-r from-sky-400 to-blue-500 rounded-3xl px-1 py-4 items-center h-1 font-semibold'>
+                <div className='bg-background rounded-3xl hover:bg-blue-100'>
+                    <button
+                        className='hover:animate-pulse px-8'
+                        onClick={openModal}
+                    >
+                        Filter programming language
+                    </button>
+                </div>
             </div>
             <Modal
                 isOpen={modalIsOpen}
@@ -73,13 +78,13 @@ const LangTagsModal = ({ updateIssues }) => {
                 overlayClassName='fixed inset-0 z-40'
                 contentLabel='Programming Languages Selection Modal'
             >
-                <div className='bg-[#0d1117] rounded-lg p-4'>
+                <div className='bg-background rounded-lg p-4'>
                     <div className='flex justify-between'>
-                        <div className='text-xl font-bold text-white'>
+                        <div className='text-xl font-bold text-text'>
                             Please select a programming language 😊
                         </div>
                         <button
-                            className='text-xl font-bold text-white hover:text-blue-500'
+                            className='text-xl font-bold text-text hover:text-primary'
                             onClick={closeModal}
                         >
                             close

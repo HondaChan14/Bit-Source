@@ -62,15 +62,10 @@ function ClerkProviderWithRoutes() {
 }
 function App() {
     return (
-        <div className='bg-slate-800 h-screen'>
+        <div className='bg-background h-screen'>
             <BrowserRouter>
                 <NavBar />
                 <MobileNav />
-                {/* <Routes>
-                        <Route path='/' element={<LandingPage />} />
-                        <Route path='/signup' element={<SignUp />} />
-                        <Route path='/login' element={<Login />} />
-                    </Routes> */}
                 <ClerkProviderWithRoutes />
                 <Footer />
             </BrowserRouter>

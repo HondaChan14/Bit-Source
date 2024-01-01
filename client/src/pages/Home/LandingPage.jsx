@@ -35,11 +35,11 @@ const LandingPage = () => {
     }, [backendUrl]);
 
     return (
-        <div className='bg-slate-800'>
+        <div>
             {loading ? (
                 <LoadingSpinner />
             ) : error ? (
-                <p className='text-white text-2xl font-bold animate-pulse'>
+                <p className='text-text text-2xl font-bold animate-pulse mt-24 mx-4'>
                     {console.log(`An error occurred: ${error.message}`)}
                     Oops! Something went wrong. Please refresh the page or try
                     again later.
