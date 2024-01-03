@@ -1,72 +1,72 @@
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import React from 'react';
+import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom';
+import { SignedIn, SignedOut, SignIn, SignUp } from '@clerk/clerk-react';
 import LandingPage from './pages/Home/LandingPage';
+import Dashboard from './pages/Dashboard/Dashboard';
 import NavBar from './Components/Header/NavBar';
 import MobileNav from './Components/Header/MobileNav';
 import Footer from './Components/Footer/Footer';
 import { Toaster } from 'react-hot-toast';
-// import ClerkProviderWithRoutes from './Components/Clerk/ClerkProviderWithRoutes';
-
 import './index.css';
-import {
-    ClerkProvider,
-    SignedIn,
-    SignedOut,
-    RedirectToSignIn,
-    SignIn,
-    SignUp,
-} from '@clerk/clerk-react';
-
-if (!import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY) {
-    throw new Error('Missing Publishable Key');
-}
-const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 
 function ClerkProviderWithRoutes() {
-    const navigate = useNavigate();
-
     return (
-        <div className='flex justify-center items-center'>
-            <Toaster position='bottom-right' />
-            <ClerkProvider
-                publishableKey={clerkPubKey}
-                navigate={(to) => navigate(to)}
-            >
-                <Routes>
-                    <Route path='/' element={<LandingPage />} />
-                    <Route
-                        path='/signin'
-                        element={<SignIn routing='path' path='/signin' />}
-                    />
-                    <Route
-                        path='/signup'
-                        element={<SignUp routing='path' path='/signup' />}
-                    />
-                    <Route
-                        path='/dashboard'
-                        element={
-                            <>
-                                <SignedIn>
-                                    <LandingPage />
-                                </SignedIn>
-                                <SignedOut>
-                                    <RedirectToSignIn />
-                                </SignedOut>
-                            </>
-                        }
-                    />
-                </Routes>
-            </ClerkProvider>
+        <div>
+            <Routes>
+                <Route path='/' element={<LandingPage />} />
+                <Route path='/issues' element={<LandingPage />} />
+                <Route
+                    path='/signin'
+                    element={
+                        <SignIn
+                            routing='path'
+                            path='/signin'
+                            signUpUrl='/sign-up'
+                            afterSignInUrl='/dashboard'
+                        />
+                    }
+                />
+                <Route
+                    path='/sign-up'
+                    element={
+                        <SignUp
+                            routing='path'
+                            path='/sign-up'
+                            afterSignUpUrl='/dashboard'
+                        />
+                    }
+                />
+                <Route
+                    path='/dashboard'
+                    element={
+                        <>
+                            <SignedIn>
+                                <Dashboard />
+                            </SignedIn>
+                            <SignedOut>
+                                <LandingPage />
+                            </SignedOut>
+                        </>
+                    }
+                />
+            </Routes>
         </div>
     );
 }
+
 function App() {
     return (
-        <div className='bg-background h-screen'>
+        <div className='bg-background h-full'>
             <BrowserRouter>
                 <NavBar />
                 <MobileNav />
-                <ClerkProviderWithRoutes />
+                <div className='flex justify-center items-center'>
+                    <Toaster position='bottom-right' />
+                    <main>
+                        <Outlet />
+                        <ClerkProviderWithRoutes />
+                    </main>
+                </div>
                 <Footer />
             </BrowserRouter>
         </div>
