@@ -60,7 +60,7 @@ function App() {
             <BrowserRouter>
                 <NavBar />
                 <MobileNav />
-                <div className='flex justify-center items-center'>
+                <div className='grid mx-8'>
                     <Toaster position='bottom-right' />
                     <main>
                         <Outlet />
