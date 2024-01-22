@@ -14,7 +14,7 @@ const NavBar = () => {
     const location = useLocation();
     return (
         <header className='top-0 z-10 sticky hidden bg-background py-6 tablet:block tablet:w-full'>
-            <nav className='container flex items-center justify-between mx-auto px-3'>
+            <nav className='grid items-center justify-between mx-auto px-3 tablet:grid-cols-2 tablet:mx-28 tablet:px-0 desktop:mx-80'>
                 <Link to='/' className='flex items-center'>
                     <span className='flex uppercase self-center text-logo font-bold text-3xl tracking-wider'>
                         Bit Source{' '}
@@ -22,8 +22,8 @@ const NavBar = () => {
                     </span>
                 </Link>
 
-                <div className='tablet:flex tablet:items-center tablet:pl-2'>
-                    <ul className='flex justify-between items-center text-xl gap-x-8 tablet:gap-x-2'>
+                <div className='tablet:flex tablet:items-center tablet:pl-2 tablet:justify-end'>
+                    <ul className='flex justify-between items-center text-xl gap-x-4'>
                         <li>
                             {!sessionId ? (
                                 <SignInButton
