@@ -40,6 +40,10 @@
     }
 }
 
+html {
+    background-color: var(--color-bkg);
+}
+
 @layer utilities {
     .label {
         @apply rounded-2xl px-2 py-[2px] font-medium bg-tag-background text-tag-text border-tag-border;
