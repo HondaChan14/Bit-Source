@@ -13,7 +13,7 @@ const UserInfo = () => {
         { icon: Site, url: null },
     ];
     return (
-        <div className='flex flex-col bg-white rounded-lg h-5/6 p-2 w-auto tablet:w-80 tablet:ml-10 laptop:max-w-[250px]'>
+        <div className='flex-col bg-white rounded-lg h-5/6 p-2 w-auto tablet:col-span-1 tablet:h-fit'>
             <div className='pb-2'>
                 <h3 className='font-bold'>Username</h3>
                 <span>Date of account created</span>

@@ -15,12 +15,12 @@ const UserIcon = () => {
     return (
         <div
             onClick={handleImageClick}
-            className='flex flex-col absolute left-12 top-40 z-0 tablet:left-20 tablet:top-32 laptop:left-[23rem]'
+            className='flex flex-col absolute left-12 top-40 z-0 tablet:left-20 tablet:top-32 laptop:left-14 desktop:left-96'
         >
             {image ? (
                 <img
                     src={URL.createObjectURL(image)}
-                    className='border-4 border-solid border-black rounded-full w-32 h-32 tablet:w-52 tablet:h-52 bg-white'
+                    className='bg-white border-4 border-solid border-black rounded-full w-32 h-32 tablet:w-52 tablet:h-52'
                 />
             ) : (
                 <img
