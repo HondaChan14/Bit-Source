@@ -1,6 +1,6 @@
 export const LoadingSpinner = () => {
     return (
-        <div>
+        <div className='mt-24'>
             <svg
                 aria-hidden='true'
                 className='animate-spin fill-indigo-800 text-slate-400 dark:fill-indigo-800 dark:text-slate-600'

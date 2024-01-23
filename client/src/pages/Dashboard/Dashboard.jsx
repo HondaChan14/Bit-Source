@@ -4,7 +4,7 @@ import UserIcon from '../../Components/Dashboard/UserIcon';
 
 const Dashboard = () => {
     return (
-        <section className='grid bg-gray-200 rounded-xl shadow-md pb-4 tablet:grid-cols-1'>
+        <section className='grid bg-gray-200 rounded-xl shadow-md pb-4 tablet:grid-cols-1 desktop:mx-80'>
             <div>
                 <div className='flex bg-gradient-to-r from-sky-400 to-blue-500 h-40 px-10 rounded-t-lg pt-4 justify-end'>
                     {/* Banner */}

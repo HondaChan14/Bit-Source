@@ -35,7 +35,7 @@ const LandingPage = () => {
     }, [backendUrl]);
 
     return (
-        <div className='flex justify-center mt-24 h-screen'>
+        <div className='flex justify-center h-screen'>
             {loading ? (
                 <LoadingSpinner />
             ) : error ? (
@@ -45,10 +45,10 @@ const LandingPage = () => {
                     again later.
                 </p>
             ) : (
-                <>
+                <div className='flex-col'>
                     <LangTagsModal updateIssues={updateIssues} />
                     <IssueBoard issues={issues} />
-                </>
+                </div>
             )}
         </div>
     );
