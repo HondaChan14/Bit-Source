@@ -29,7 +29,7 @@ const MobileNav = () => {
                 </div>
 
                 <button
-                    className='text-4xl w-fit place-self-end self-center'
+                    className='text-text text-4xl w-fit place-self-end self-center'
                     onClick={() => setShowMenu(!showMenu)}
                 >
                     {showMenu ? <FaTimes /> : <FaBars />}
