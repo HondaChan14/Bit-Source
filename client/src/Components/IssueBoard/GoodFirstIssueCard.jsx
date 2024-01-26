@@ -8,11 +8,15 @@ const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
+const truncateTitle = (string) => {
+    return string.length > 70 ? string.slice(0, 70) + '...' : string;
+};
+
 const GoodFirstIssueCard = ({ issue }) => {
     const { created_at, user, title, labels } = issue;
     const dateData = new Date(created_at).toLocaleDateString();
     const usernameData = capitalizeFirstLetter(user.login);
-    const issueTitleData = capitalizeFirstLetter(title);
+    const issueTitleData = truncateTitle(capitalizeFirstLetter(title));
     const labelData = labels.map((label) => capitalizeFirstLetter(label.name));
 
     const userProfile = user.html_url;
@@ -36,7 +40,7 @@ const GoodFirstIssueCard = ({ issue }) => {
 
     return (
         <div className='rounded-2xl bg-gradient-to-r from-sky-400 to-blue-500 p-1 shadow-xl hover:shadow-2xl transition duration-500 transform hover:-traslate-y-1 hover:scale-105'>
-            <div className='block rounded-xl bg-background hover:bg-blue-100 p-4 sm:p-6 lg:p-8 h-80'>
+            <div className='block rounded-xl bg-background dark:bg-background hover:bg-blue-100 p-4 laptop:p-6 desktop:p-8 h-80'>
                 <h2 className='text-xl text-text mb-2 h-20 font-bayon'>
                     {issueTitleData}
                 </h2>
