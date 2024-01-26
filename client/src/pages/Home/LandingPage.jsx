@@ -35,11 +35,11 @@ const LandingPage = () => {
     }, [backendUrl]);
 
     return (
-        <div className='flex justify-center h-screen'>
+        <div className='flex justify-center h-max'>
             {loading ? (
                 <LoadingSpinner />
             ) : error ? (
-                <p className='text-text text-2xl font-bold animate-pulse mx-4'>
+                <p className='text-text text-2xl font-bold animate-pulse mx-4 mt-24'>
                     {console.log(`An error occurred: ${error.message}`)}
                     Oops! Something went wrong. Please refresh the page or try
                     again later.
