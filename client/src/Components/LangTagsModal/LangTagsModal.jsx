@@ -74,12 +74,12 @@ const LangTagsModal = ({ updateIssues }) => {
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
-                className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-gradient-to-r from-sky-400 to-blue-500 p-2 rounded-lg shadow-lg max-w-3xl z-50'
+                className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-gradient-to-r from-sky-400 to-blue-500 p-2 rounded-lg shadow-lg w-5/6 desktop:max-w-3xl z-50'
                 overlayClassName='fixed inset-0 z-40'
                 contentLabel='Programming Languages Selection Modal'
             >
                 <div className='bg-background rounded-lg p-4'>
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between gap-x-4'>
                         <div className='text-xl font-bold text-text'>
                             Please select a programming language 😊
                         </div>
@@ -90,14 +90,18 @@ const LangTagsModal = ({ updateIssues }) => {
                             close
                         </button>
                     </div>
-                    <div className='flex flex-wrap gap-4 justify-center p-4 '>
-                        {programmingLanguages.map((language) => (
-                            <LangTag
-                                key={language.keyword}
-                                tag={language.name}
-                                onSelect={() => handleLanguageClick(language)}
-                            />
-                        ))}
+                    <div className='flex justify-center'>
+                        <div className='grid grid-cols-3 w-fit pt-2 gap-4 tablet:grid-cols-4 desktop:grid-cols-6 desktop:p-4 desktop:gap-8'>
+                            {programmingLanguages.map((language) => (
+                                <LangTag
+                                    key={language.keyword}
+                                    tag={language.name}
+                                    onSelect={() =>
+                                        handleLanguageClick(language)
+                                    }
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </Modal>
